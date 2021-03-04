@@ -20,7 +20,7 @@ import javax.persistence.Table;
 })
 
 @NamedNativeQueries({
-	@NamedNativeQuery(name = "Report.random10",query = "SELECT TOP 10 * FROM Videos ORDER BY newid()",resultClass = Video.class)
+	@NamedNativeQuery(name = "Report.random6",query = "SELECT TOP 6 * FROM Videos ORDER BY newid()",resultClass = Video.class)
 })
 
 

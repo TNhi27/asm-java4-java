@@ -11,7 +11,7 @@ window.onload = function() {
                     }
 	});
 }
-
+	
 $(document).ready(function () {
 	
             $(window).bind('scroll', function () {
@@ -24,11 +24,12 @@ $(document).ready(function () {
                 }
             })
  });
-       
+ 
+
+  
  function show(val) {
-    	var idvideo = document.getElementById("idshare")
-    	idvideo.value=val
-    	
+ 		$("#id-video").val(val)
+    	id = $("#id-video").val()
 		
 	}
     
@@ -41,6 +42,8 @@ $(document).ready(function () {
     	$("input[name=rpw]").val("")   
     	
 	}
+	
+	 
     function edit() {
     	
      	id =$("input[name=username]").val();
@@ -69,8 +72,8 @@ $(document).ready(function () {
 	}
 	
     function share() {
-    	
-       	 id = $("#id").val();
+    		
+       	 	id = $("#id-video").val();
             email =$("input[name=email]").val();
             mess =$("input[name=mess]").val();
              $.ajax({
@@ -133,3 +136,8 @@ $(document).ready(function () {
     	
        
     });
+    
+    
+    
+    
+    

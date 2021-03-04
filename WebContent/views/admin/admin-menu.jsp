@@ -36,6 +36,9 @@
                 <div class="acc" style="display: flex;">
                     <i class="fa fa-user fa-2x" aria-hidden="true"></i>
                     <h3 style="padding-left: 10px;">ADMIN TOOL</h3>
+                    
+                    <a class="dropdown-item" href="/Java4_ASM_PC00653/logout">
+                     <button class="btn btn-outline-success my-2 my-sm-0">Logout</button></a>
                 </div>
             </div>
         </nav>

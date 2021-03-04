@@ -14,6 +14,7 @@
 
 <body>
     <div class="container-fluid rootmen">
+        <form action="/Java4_ASM_PC00653/dang-ki" method="post">
         <div class="form fr1">
            
             <h1 class="text-center"><i class="fa fa-user-plus fa-2x" aria-hidden="true"></i></h1>
@@ -21,31 +22,32 @@
             <div class="row" >
                 <div class="form-group col-sm-6">
                     <label for="">USER NAME:</label>
-                    <input type="text" class="form-control ctrl" name="" id="" aria-describedby="helpId"
+                    <input required type="text" class="form-control ctrl" name="idu" id="" aria-describedby="helpId"
                         placeholder="Username ?">
                 </div>
                 <div class="form-group col-sm-6">
                     <label for="">PASSWORD:</label>
-                    <input type="text" class="form-control ctrl" name="" id="" aria-describedby="helpId"
+                    <input required type="text" class="form-control ctrl" name="password" id="" aria-describedby="helpId"
                         placeholder="Password ?"> <br>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-sm-6">
                     <label for="">FULL NAME :</label>
-                    <input type="text" class="form-control ctrl" name="" id="" aria-describedby="helpId"
+                    <input required type="text" class="form-control ctrl" name="fullName" id="" aria-describedby="helpId"
                         placeholder="Full name ?">
                 </div>
                 <div class="form-group col-sm-6">
                     <label for="">EMAIL:</label>
-                    <input type="text" class="form-control ctrl" name="" id="" aria-describedby="helpId"
+                    <input required type="text" class="form-control ctrl" name="email" id="" aria-describedby="helpId"
                         placeholder="Email ?"> <br>
                 </div>
             </div>
             <div class="text-center">
-                <button class="btn btn-outline-light btn-login" style="width: 300px;" type="button">CREATE</button>
+                <button class="btn btn-outline-light btn-login" style="width: 300px;" type="submit">CREATE</button>
                </div>
         </div>
+        </form>
 </body>
 
 </html>

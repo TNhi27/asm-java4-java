@@ -42,13 +42,7 @@
   				</button>
 				</div>
 				</c:if>
-				<div class="timkiem">
-					<form class="form-inline my-2 my-lg-0 ">
-						<input class="form-control mr-sm-2" type="search"
-							placeholder="Search User" aria-label="Search">
-						<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-					</form>
-					</div>
+				
 				
 				<div class="form-group">
 				

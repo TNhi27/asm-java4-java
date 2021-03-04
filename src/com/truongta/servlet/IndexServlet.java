@@ -33,15 +33,15 @@ public class IndexServlet extends HttpServlet{
 		String uri = req.getRequestURI();
 		HttpSession s = req.getSession();
 		User user = (User) s.getAttribute("user");
+		List<Video> videos = vdao.findTop6();
 		if (uri.equals("/Java4_ASM_PC00653/")) {
 			if (user != null) {
-				List<Video> videos = vdao.findAll();
+				
 				List<Favorite> favorite = fdao.findByUser(user.getId());
 				req.setAttribute("fav", favorite);
 				req.setAttribute("videos", videos);
 				req.setAttribute("view", "/views/user/trangchu.jsp");
 			}else {
-				List<Video> videos = vdao.findAll();
 				req.setAttribute("videos", videos);
 				req.setAttribute("view", "/views/user/trangchu.jsp");
 			}

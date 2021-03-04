@@ -24,6 +24,7 @@ import com.truongta.utils.RRShare;
 public class LoginServlet extends HttpServlet{
 	VideoDao vdao = new VideoDao();
 	FavoriteDao fdao = new FavoriteDao();
+	UserDao udao = new UserDao();
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String uri = req.getRequestURI();
@@ -61,15 +62,17 @@ public class LoginServlet extends HttpServlet{
 					
 					HttpSession session = req.getSession();
 					session.setAttribute("user", u);
+					String securi = (String) session.getAttribute("securi");
+							
 					if (u.isAdmin()) {
 						req.getRequestDispatcher("views/admin/admin.jsp").forward(req, resp);
 					}else {
 						List<Video> videos = vdao.findAll();
-						List<Favorite> favorite = fdao.findByUser("truongta1");
+						List<Favorite> favorite = fdao.findByUser(u.getId());
 						req.setAttribute("fav", favorite);
 						req.setAttribute("videos", videos);
 						req.setAttribute("view", "/views/user/trangchu.jsp");
-						req.getRequestDispatcher("views/user/index.jsp").forward(req, resp);
+						req.getRequestDispatcher("/views/user/index.jsp").forward(req, resp);
 					}
 					
 				}
@@ -77,8 +80,25 @@ public class LoginServlet extends HttpServlet{
 			
 			if (kt==false) {
 				req.setAttribute("mess", true);
-				req.getRequestDispatcher("views/login.jsp").forward(req, resp);
+				req.getRequestDispatcher("/views/login.jsp").forward(req, resp);
 			}
+		}
+		
+		if (uri.contains("dang-ki")) {
+			String id = req.getParameter("idu");
+			String fullName = req.getParameter("fullName");
+			String pass = req.getParameter("password");
+			String email = req.getParameter("email");
+			User u = new User();
+			u.setId(id);
+			u.setFullName(fullName);
+			u.setPassword(pass);
+			u.setEmail(email);
+			u.setAdmin(false);
+			udao.create(u);
+			System.out.println("thanh cong ");
+			req.setAttribute("mess1", true);
+			req.getRequestDispatcher("/views/login.jsp").forward(req, resp);
 		}
 	}
 }

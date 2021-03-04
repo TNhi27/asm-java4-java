@@ -38,30 +38,47 @@ public class AdVideoServlet extends HttpServlet{
 		
 			String uri = req.getRequestURI();
 			VideoDao vdao = new VideoDao();
-			List<Video> list = vdao.findAll();
-			req.setAttribute("videos", list);
+			
+			
 			if (uri.equals("/Java4_ASM_PC00653/create")) {
 				Video video = this.getForm(req);
 				vdao.create(video);
+				List<Video> list = vdao.findAll();
+				req.setAttribute("videos", list);
 				req.getRequestDispatcher("/views/admin/videos.jsp").forward(req, resp);
 			}
 			if (uri.equals("/Java4_ASM_PC00653/updata")) {
-				Video video = this.getForm(req);
-				vdao.update(video);
+				try {
+					Video video = this.getForm(req);
+					vdao.update(video);
+					req.setAttribute("mess", "Cap Nhat Thanh Cong");
+				} catch (Exception e) {
+					req.setAttribute("mess", "Khong Duoc De Trong Poster");
+				}
+				
+				List<Video> list = vdao.findAll();
+				req.setAttribute("videos", list);
 				req.getRequestDispatcher("/views/admin/videos.jsp").forward(req, resp);
 			}
 			if (uri.equals("/Java4_ASM_PC00653/delete")) {
-				Video video = this.getForm(req);
-				vdao.remove(video.getId());
+				String id = req.getParameter("idytb");
+			
+				
+				vdao.remove(id);
+				req.setAttribute("mess", "Xoa Thanh Cong");
+				List<Video> list = vdao.findAll();
+				req.setAttribute("videos", list);
 				req.getRequestDispatcher("/views/admin/videos.jsp").forward(req, resp);
 			}
 			if (uri.equals("/Java4_ASM_PC00653/reset")) {
+				List<Video> list = vdao.findAll();
+				req.setAttribute("videos", list);
 				req.getRequestDispatcher("/views/admin/videos.jsp").forward(req, resp);
 			}
 		
 		
 	}
-	public Video getForm(HttpServletRequest req) {
+	public Video getForm(HttpServletRequest req) throws NullPointerException{
 		RRShare.add(req, null);
 		Video video = new Video();
 		String id = req.getParameter("idytb");

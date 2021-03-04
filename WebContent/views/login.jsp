@@ -21,12 +21,19 @@
 	<div class="container-fluid rootmen">
 	
 		<div class="form">
-		<c:if test="${mess }">
+		<c:if test="${mess}">
 			 <div class="alert alert-primary alert-dismissible fade show text-center">
 			 	Đăng Nhập Thất Bại !
     			<button type="button" class="close" data-dismiss="alert" onclick="$('.alert').hide()">&times;</button>
 			</div>
 		</c:if>
+		<c:if test="${mess1}">
+			 <div class="alert alert-primary alert-dismissible fade show text-center">
+			 	Dang ki thanh cong
+    			<button type="button" class="close" data-dismiss="alert" onclick="$('.alert').hide()">&times;</button>
+			</div>
+		</c:if>
+		
 			<form class="form-group fr" action="/Java4_ASM_PC00653/login" method="post">
 				
 				<h1 class="text-center">
@@ -47,7 +54,7 @@
 				
 				<div class="text-right">
 					<button class="btn btn-outline-light btn-login" type="submit">Login</button>
-					<button class="btn btn-outline-light btn-login" type="button">Forgot Password</button>
+					<a href="/Java4_ASM_PC00653/dang-ki"><button class="btn btn-outline-light btn-login" type="button">Register</button></a>
 				</div>
 			</form>
 		</div>

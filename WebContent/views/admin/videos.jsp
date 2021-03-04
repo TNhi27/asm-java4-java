@@ -33,15 +33,22 @@
 		<div class="tab-content" id="myTabContent">
 			<div class="tab-pane fade show active" id="edit" role="tabpanel"
 				aria-labelledby="home-tab">
-
+	<c:if test="${mess != null }">
+				<div class="alert alert-success text-center" role="alert">
+  					${mess }
+  					 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    					<span aria-hidden="true">&times;</span>
+  				</button>
+				</div>
+				</c:if>
 				<div class="form-group">
 					<form id="form-edit" action="" method="post" enctype="multipart/form-data">
 						<div class="row">
 							<div class="col-sm-4">
 								<div class="img-vd">
 									
-									<img alt="" src='<c:url value="/static/file/${video.poster }"/>'>
-									<input required  class="form-control" type="file" name="poster" accept="image/*">
+									<img id="img" alt="" src='<c:url value="/static/file/${video.poster }"/>'>
+									<input   class="form-control" type="file" name="poster" accept="image/*">
 								</div>
 							</div>
 							<div class="col-sm-8">
@@ -79,13 +86,14 @@
 							<textarea  id="my-textarea" class="form-control" name="description" rows="3">${video.description }</textarea>
 
 						</div>
-						<div class="col-sm-12 text-right btn-sub">
+						<div class="col-sm-11 text-right btn-sub">
 							<button formaction="/Java4_ASM_PC00653/create" class="btn btn-primary">Create</button>
 							<button formaction="/Java4_ASM_PC00653/updata" class="btn btn-primary">Updata</button>
 							<button formaction="/Java4_ASM_PC00653/delete" class="btn btn-primary">Delete</button>
-							<button formaction="/Java4_ASM_PC00653/reset" class="btn btn-primary">Reset</button>
+							<button formaction="/Java4_ASM_PC00653/admin/all-video" class="btn btn-primary">Reset</button>
 						
 						</div>
+						
 						</form>
 						
 							

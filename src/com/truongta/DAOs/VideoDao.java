@@ -23,8 +23,13 @@ public class VideoDao {
 		Video v = manager.find(Video.class, id);
 		return v;
 	}
+	public List<Video> findTop6() {
+		TypedQuery<Video> q = manager.createNamedQuery("Report.random6", Video.class);
+		List<Video> list = q.getResultList();
+		return list;
+	}
 	public List<Video> findByKeyword(String key) {
-		String jpql = "SELECT o.video FROM Favorite o where o.video.title LIKE :key";
+		String jpql = "SELECT DISTINCT o.video FROM Favorite o where o.video.title LIKE :key";
 		TypedQuery<Video> query = manager.createQuery(jpql, Video.class);
 		query.setParameter("key", "%"+key+"%");
 		List<Video> list = query.getResultList();

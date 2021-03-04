@@ -1,7 +1,25 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 
+<script type="text/javascript">
+function resetForm() {
+		var a =document.getElementById("formForgot");
+		
+			a.innerHTML=" <form  action=\"\" method=\"POST\">\r\n"
+				+ "                        <input type=\"text\" name=\"user1\" id=\"\" class=\"form-control\" placeholder=\"User Name\"\r\n"
+				+ "                            aria-describedby=\"helpId\"> <br>\r\n"
+				+ "                        <input type=\"text\" name=\"email1\" id=\"\" class=\"form-control\" placeholder=\"Email\"\r\n"
+				+ "                            aria-describedby=\"helpId\"> <br>\r\n"
+				+ "                        <hr>\r\n"
+				+ "                        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\r\n"
+				+ "                        <button onclick=\"forgotPassword()\" class=\"btn btn-primary\">Retrieve</button>\r\n"
+				+ "                    </form>";
+		
+		
+	  	event.preventDefault();
+	
+}
+</script>
 	
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 
@@ -31,7 +49,7 @@
 		<c:when test="${empty sessionScope.user }">
 							<a class="dropdown-item" href="/Java4_ASM_PC00653/login">Login</a>
                     		<a class="dropdown-item" href="/Java4_ASM_PC00653/dang-ki">Registration</a>
-                    		 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-quen-mk">Forgot
+                    		 <a class="dropdown-item" onclick="resetForm()" href="#" data-toggle="modal" data-target="#modal-quen-mk">Forgot
                                 Password</a>
 		</c:when>
 		<c:otherwise>
@@ -51,8 +69,8 @@
                     </li>
 
                 </ul>
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search Video" aria-label="Search">
+                <form action="/Java4_ASM_PC00653/search" method="post" class="form-inline my-2 my-lg-0">
+                    <input name="key" class="form-control mr-sm-2" type="search" placeholder="Search Video" aria-label="Search">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </form>
             </div>

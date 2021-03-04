@@ -28,6 +28,8 @@ public class Favorite {
 	@ManyToOne @JoinColumn(name = "UserId")
 	User user;
 	
+	
+	
 	public Long getId() {
 		return id;
 	}
@@ -52,6 +54,8 @@ public class Favorite {
 	public void setUser(User user) {
 		this.user = user;
 	}
+	
+	
 	
 	
 }

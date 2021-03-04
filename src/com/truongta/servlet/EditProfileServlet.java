@@ -28,7 +28,7 @@ public class EditProfileServlet extends HttpServlet{
 		HttpSession s = req.getSession();
 		try {
 			User u = (User) s.getAttribute("user");
-		
+			System.out.println("da vao dc edit profile");
 			resp.setCharacterEncoding("UTF-8"); 
 			resp.getWriter().write(" <label for=\"\">Username</label>\r\n"
 	    		+ "                        <input value=\""+u.getId()+"\" type=\"text\" name=\"username\" id=\"\" class=\"form-control\" placeholder=\"Username\"\r\n"

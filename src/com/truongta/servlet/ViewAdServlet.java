@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.truongta.DAOs.VideoDao;
 import com.truongta.entities.Video;
-@WebServlet({"/admin/home","/admin/all-video","/admin/reports"})
+@WebServlet({"/admin/home","/admin/all-video"})
 public class ViewAdServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
@@ -29,9 +29,7 @@ public class ViewAdServlet extends HttpServlet {
 				req.getRequestDispatcher("/views/admin/videos.jsp").forward(req, resp);
 			}
 			
-			if (uri.contains("admin/reports")) {
-				req.getRequestDispatcher("/views/admin/thongke.jsp").forward(req, resp);
-			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

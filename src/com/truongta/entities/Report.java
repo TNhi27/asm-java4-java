@@ -33,13 +33,15 @@ import javax.persistence.StoredProcedureParameter;
 public class Report {
 	@Id
 	Serializable gr;
+	String videoID;
 	Long likes;
 	Date newest;
 	Date oldest;
 
-	public Report(Serializable gr, Long likes, Date newest, Date oldest) {
+	public Report(Serializable gr,String videoID ,Long likes, Date newest, Date oldest) {
 
 		this.gr = gr;
+		this.videoID=videoID;
 		this.likes = likes;
 		this.newest = newest;
 		this.oldest = oldest;
@@ -54,6 +56,14 @@ public class Report {
 
 	public void setGr(Serializable gr) {
 		this.gr = gr;
+	}
+
+	public String getVideoID() {
+		return videoID;
+	}
+
+	public void setVideoID(String videoID) {
+		this.videoID = videoID;
 	}
 
 	public Long getLikes() {

@@ -1,17 +1,21 @@
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-<meta charset="UTF-8">
+ <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Thống Kê</title>
 <style><%@include file="/static/bootstrap/css/bootstrap.min.css"%></style>
 	<style><%@include file="/static/css/admin.css"%></style>
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
 
@@ -39,7 +43,7 @@
 				aria-labelledby="home-tab">
 				<table class="table table-light table-hover">
 					<caption>
-						<span class="badge badge-info">2</span> Videos
+						
 						<div class="text-right">
 							<div class="btn-group" role="group" aria-label="Button group">
 								<button class="btn btn-secondary mr-4" type="button">|<
@@ -53,7 +57,6 @@
 					</caption>
 					<thead class="thead-light">
 						<tr>
-							<th></th>
 							<th>Video Title</th>
 							<th>Favorite Count <i class="fa fa-heart"
 								style="color: rgb(255, 0, 0);" aria-hidden="true"></i></th>
@@ -62,20 +65,15 @@
 						</tr>
 					</thead>
 					<tbody>
+						<c:forEach var="f" items="${favorite }">
 						<tr>
-							<td>1</td>
-							<td>HOW TO LEAN JAVA 4</td>
-							<td>1222</td>
-							<td>12/12/2020</td>
-							<td>01/01/2021</td>
+							<td>${f.gr }</td>
+							<td>${f.likes }</td>
+							<td>${f.newest }</td>
+							<td>${f.oldest }</td>
 						</tr>
-						<tr>
-							<td>1</td>
-							<td>HOW TO LEAN JAVA 5</td>
-							<td>4000</td>
-							<td>12/12/2020</td>
-							<td>01/01/2021</td>
-						</tr>
+						</c:forEach>
+						
 					</tbody>
 
 				</table>
@@ -86,39 +84,26 @@
 				<div class="row">
 					<div class="col-sm-12 text-center">
 						<h3>TITLE</h3>
-						<select class="cbo-video  text-white bg-secondary" name="" id="">
-
-							<option value="">HOW TO LEAN JAVA 4</option>
-							<option value="">HOW TO LEAN JAVA 5</option>
+						<select onchange="getByShare(this.value)" class="cbo-video  text-white bg-secondary" name="" id="">
+							<option   value="null">--Chon Video--</option>
+							<c:forEach var="f" items="${favorite }">
+								<option value="${f.videoID }">${f.gr }</option>
+							</c:forEach>
 						</select>
 					</div>
 				</div>
 				<table class="table table-light table-hover">
 
 					<thead class="thead-light">
-						<tr>
-							<th></th>
+						<tr>	
 							<th>Sender Name</th>
 							<th>Sender Email</th>
 							<th>Receiver Email</th>
 							<th>Sent Date</th>
 						</tr>
 					</thead>
-					<tbody>
-						<tr>
-							<td>1</td>
-							<td>Lưu Trường Tá</td>
-							<td>truongta@gmail.com</td>
-							<td>fpoltya@gmail.com</td>
-							<td>01/01/2021</td>
-						</tr>
-						<tr>
-							<td>2</td>
-							<td>Lưu Tá Trường</td>
-							<td>truongta@gmail.com</td>
-							<td>fpoltya@gmail.com</td>
-							<td>01/01/2021</td>
-						</tr>
+					<tbody id="share-table">
+						
 					</tbody>
 
 				</table>
@@ -129,10 +114,13 @@
 				<div class="row">
 					<div class="col-sm-12 text-center">
 						<h3>TITLE</h3>
-						<select class="cbo-video  text-white bg-secondary" name="" id="">
-
-							<option value="">HOW TO LEAN JAVA 4</option>
-							<option value="">HOW TO LEAN JAVA 5</option>
+						<select onchange="getByUser(this.value)" class="  cbo-video  text-white bg-secondary" name="" id="cboUserFav">
+							<option   value="null">--Chon Video--</option>
+							<c:forEach var="f" items="${favorite }">
+								<option value="${f.videoID }">${f.gr }</option>
+							</c:forEach>
+							
+							
 						</select>
 					</div>
 				</div>
@@ -140,28 +128,24 @@
 
 					<thead class="thead-light">
 						<tr>
-							<th></th>
+							
 							<th>User name</th>
 							<th>Full name</th>
 							<th>Email</th>
 							<th>Favorite date</th>
 						</tr>
 					</thead>
-					<tbody>
+					<tbody id="userfav">
+						<c:forEach var="u" items="${listF }">
 						<tr>
-							<td>1</td>
-							<td>Truongta11</td>
-							<td>Lưu Trường Tá</td>
-							<td>truongta@gmail.com</td>
-							<td>01/01/2021</td>
+							<td>${u.userID }</td>
+							<td>${u.fullName }</td>
+							<td>${u.email }</td>
+							<td>${u.day }</td>
 						</tr>
-						<tr>
-							<td>2</td>
-							<td>Truongta11</td>
-							<td>Lưu Trường Tá</td>
-							<td>truongta@gmail.com</td>
-							<td>01/01/2021</td>
-						</tr>
+						</c:forEach>
+						
+						
 					</tbody>
 
 				</table>
@@ -170,6 +154,9 @@
 
 
 	</div>
+	
+	
+	  <script type="text/javascript" src="<c:url value = '/static/js/report.js' />"></script>
 </body>
 
 </html>
